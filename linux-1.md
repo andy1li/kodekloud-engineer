@@ -114,6 +114,62 @@ sshpass -p 'BigGr33n' ssh -o StrictHostKeyChecking=no banner@stapp03
 
 ```bash
 # thor@jump_host
+sshpass -p 'Bl@kW' ssh -o StrictHostKeyChecking=no natasha@ststor01
+
+# natasha@ststor01
+tar -cvzf kirsty.tar.gz /data/kirsty
+sudo mv kirsty.tar.gz /home
+```
+
+
+
+### 9. Linux File Permissions
+
+```bash
+# thor@jump_host
+sshpass -p 'Am3ric@' ssh -o StrictHostKeyChecking=no steve@stapp02
+
+# steve@stapp02
+ls -lh /tmp/xfusioncorp.sh
+sudo chmod +rx /tmp/xfusioncorp.sh
+/tmp/xfusioncorp.sh
+```
+
+
+
+### 10. Linux Access Control List
+
+```bash
+# thor@jump_host
+sshpass -p 'Ir0nM@n' ssh -o StrictHostKeyChecking=no tony@stapp01
+
+# tony@stapp01
+getfacl /etc/hostname
+sudo setfacl -m u:ammar:-,jerome:r /etc/hostname
+getfacl /etc/hostname
+```
+
+
+
+### 11. Linux String Substitute
+
+```bash
+# thor@jump_host
+sshpass -p 'H@wk3y3' ssh -o StrictHostKeyChecking=no clint@stbkp01
+
+# clint@stbkp01
+sudo tail /root/nautilus.xml
+sudo grep -e About /root/nautilus.xml | wc -l
+sudo sed -i 's#About#Architecture#g' /root/nautilus.xml
+sudo grep -e Architecture /root/nautilus.xml | wc -l
+```
+
+
+
+### 12. 
+
+```bash
+# thor@jump_host
 
 ```
 
