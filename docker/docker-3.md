@@ -25,7 +25,14 @@ docker network ls
 
 ```bash
 # thor@jump_host
+sshpass -p 'Am3ric@' ssh -o StrictHostKeyChecking=no steve@stapp02
 
+# steve@stapp02
+docker run -d \
+	--name demo \
+	-v /opt/security:/tmp \
+	nginx
+sudo cp /tmp/sample.txt /opt/security
 ```
 
 
@@ -34,7 +41,14 @@ docker network ls
 
 ```bash
 # thor@jump_host
+sshpass -p 'Am3ric@' ssh -o StrictHostKeyChecking=no steve@stapp02
 
+# steve@stapp02
+docker run -d \
+	--name media \
+	-p 3001:80 \
+	nginx:alpine-perl
+curl -I localhost:3001
 ```
 
 
