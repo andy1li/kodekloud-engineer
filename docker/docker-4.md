@@ -90,7 +90,24 @@ services:
 
 ```bash
 # thor@jump_host
+sshpass -p 'Am3ric@' ssh -o StrictHostKeyChecking=no steve@stapp02
 
+# steve@stapp02
+cd /node_app/
+sudo vi Dockerfile
+docker build -t nautilus/node-web-app --network bridge .
+docker run --name nodeapp_nautilus -p 8095:3000 -d nautilus/node-web-app
+curl -I localhost:8095
+```
+
+```
+FROM node:lts-alpine
+RUN mkdir -p /home/node/app
+WORKDIR /home/node/app
+COPY . .
+RUN npm install
+EXPOSE 3000
+CMD [ "node", "server.js" ]
 ```
 
 
@@ -99,7 +116,23 @@ services:
 
 ```bash
 # thor@jump_host
+sshpass -p 'BigGr33n' ssh -o StrictHostKeyChecking=no banner@stapp03
 
+# banner@stapp03
+cd /python_app/
+sudo vi Dockerfile
+docker build -t nautilus/python-app .
+docker run --name pythonapp_nautilus -p 8095:3002 -d nautilus/python-app
+curl -I localhost:8095
+```
+
+```
+FROM python:alpine
+WORKDIR /usr/src/app
+COPY ./src .
+RUN pip install --no-cache-dir -r requirements.txt
+EXPOSE 3002
+CMD [ "python", "server.py" ]
 ```
 
 
