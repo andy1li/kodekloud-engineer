@@ -20,7 +20,11 @@ sudo git init --bare news.git
 
 ```bash
 # thor@jump_host
+sshpass -p 'Bl@kW' ssh -o StrictHostKeyChecking=no natasha@ststor01
 
+# natasha@ststor01
+cd /usr/src/kodekloudrepos/
+sudo git clone /opt/cluster.git/
 ```
 
 
@@ -29,7 +33,6 @@ sudo git init --bare news.git
 
 ```bash
 # thor@jump_host
-
 ```
 
 
@@ -38,7 +41,16 @@ sudo git init --bare news.git
 
 ```bash
 # thor@jump_host
+scp /tmp/index.html natasha@ststor01:/tmp/
+sshpass -p 'Bl@kW' ssh -o StrictHostKeyChecking=no natasha@ststor01
 
+# natasha@ststor01
+sudo cp /tmp/index.html /usr/src/kodekloudrepos/blog/index.html
+cd /usr/src/kodekloudrepos/blog/
+git config --global --add safe.directory /usr/src/kodekloudrepos/blog
+sudo git add index.html
+sudo git commit -m "add index.html"
+sudo git push -u origin master
 ```
 
 
@@ -47,7 +59,13 @@ sudo git init --bare news.git
 
 ```bash
 # thor@jump_host
+sshpass -p 'Bl@kW' ssh -o StrictHostKeyChecking=no natasha@ststor01
 
+# natasha@ststor01
+cd /usr/src/kodekloudrepos/media
+sudo git branch -a
+sudo git checkout master
+sudo git branch -d xfusioncorp_media
 ```
 
 
