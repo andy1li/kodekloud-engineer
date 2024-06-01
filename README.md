@@ -12,7 +12,10 @@ My attempts at [Kodekloud Engineer](https://engineer.kodekloud.com/signup?referr
   - ✅ [Level 4](./docker/docker-4.md)
   
 - Git
-  - [Level 1](./git/git-1.md)
+  - ✅ [Level 1](./git/git-1.md)
+  - ✅ [Level 2](./git/git-2.md)
+  - [Level 3](./git/git-3.md)
   
 - Linux
   - [Level 1](./linux-1.md)
+
