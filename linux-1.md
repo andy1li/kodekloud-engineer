@@ -166,7 +166,113 @@ sudo grep -e Architecture /root/nautilus.xml | wc -l
 
 
 
-### 12. 
+### 12. Secure Data Transfer
+
+```bash
+# thor@jump_host
+scp /tmp/nautilus.txt.gpg steve@stapp02:/home/nfsdata/
+```
+
+
+
+### 13. Restrict Cron Access
+
+```bash
+# thor@jump_host
+sshpass -p 'Am3ric@' ssh -o StrictHostKeyChecking=no steve@stapp02
+
+# steve@stapp02
+sudo su
+
+# root@stapp02
+echo "jim" >> /etc/cron.allow
+echo "rod" >> /etc/cron.deny
+exit
+
+sudo su jim
+# jim@stapp02
+crontab -e
+exit
+
+sudo su rod
+# rod@stapp02
+crontab -e
+```
+
+
+
+### 14. Default GUI Boot Configuration
+
+```bash
+# thor@jump_host
+sshpass -p 'Ir0nM@n' ssh -o StrictHostKeyChecking=no tony@stapp01
+
+# tony@stapp01
+systemctl list-units | grep -i target
+
+systemctl get-default
+sudo systemctl set-default graphical.target
+
+sudo systemctl start graphical.target
+sudo systemctl status graphical.target
+
+# repeat 2 times
+sshpass -p 'Am3ric@' ssh -o StrictHostKeyChecking=no steve@stapp02
+sshpass -p 'BigGr33n' ssh -o StrictHostKeyChecking=no banner@stapp03
+```
+
+
+
+### 15. Timezone Alignment
+
+```bash
+# thor@jump_host
+sshpass -p 'Ir0nM@n' ssh -o StrictHostKeyChecking=no tony@stapp01
+
+# tony@stapp01
+sudo timedatectl set-timezone Pacific/Fiji
+timedatectl
+
+# repeat 2 times
+sshpass -p 'Am3ric@' ssh -o StrictHostKeyChecking=no steve@stapp02
+sshpass -p 'BigGr33n' ssh -o StrictHostKeyChecking=no banner@stapp03
+```
+
+
+
+### 16. NTP Configuration
+
+```bash
+# thor@jump_host
+sshpass -p 'Am3ric@' ssh -o StrictHostKeyChecking=no steve@stapp02
+
+# steve@stapp02
+sudo yum install -y ntp
+sudo vi /etc/ntp.conf
+> server 1.my.pool.ntp.org
+```
+
+
+
+### 17. Firewall Configuration
+
+```bash
+# thor@jump_host
+
+```
+
+
+
+### 18. Process Limit Adjustment
+
+```bash
+# thor@jump_host
+
+```
+
+
+
+### 19. SElinux Installation and Configuration
 
 ```bash
 # thor@jump_host
