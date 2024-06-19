@@ -11,6 +11,8 @@ My attempts at [Kodekloud Engineer](https://engineer.kodekloud.com/signup?referr
   - ✅ [Level 1](./git/git-1.md)
   - ✅ [Level 2](./git/git-2.md)
   - ✅ [Level 3](./git/git-3.md)
-  - ✅[Level 4](./git/git-4.md)
+  - ✅ [Level 4](./git/git-4.md)
 - Linux
-  - [Level 1](./linux-1.md)
+  - ☑️ [Level 1](./linux/linux-1.md)
+- Ansible
+  - [Level 1](./ansible/ansible-1.md)
