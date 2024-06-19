@@ -258,7 +258,14 @@ sudo vi /etc/ntp.conf
 
 ```bash
 # thor@jump_host
+sshpass -p 'H@wk3y3' ssh -o StrictHostKeyChecking=no clint@stbkp01
 
+# clint@stbkp01
+sudo firewall-cmd --list-all
+sudo firewall-cmd --zone=public --permanent --add-port=8085/tcp
+
+sudo firewall-cmd --reload
+sudo firewall-cmd --list-all
 ```
 
 
@@ -267,12 +274,33 @@ sudo vi /etc/ntp.conf
 
 ```bash
 # thor@jump_host
+sshpass -p 'Bl@kW' ssh -o StrictHostKeyChecking=no natasha@ststor01
 
+# natasha@ststor01
+sudo vi /etc/security/limits.conf
+> @nfsuser         soft    nproc           1024
+> @nfsuser         hard    nproc           2026
 ```
 
 
 
 ### 19. SElinux Installation and Configuration
+
+```bash
+# thor@jump_host
+sshpass -p 'Am3ric@' ssh -o StrictHostKeyChecking=no steve@stapp02
+
+# steve@stapp02
+sudo yum install selinux* -y
+sudo vi /etc/selinux/config
+> SELINUX=disabled
+```
+
+
+
+### Test
+
+1. Test
 
 ```bash
 # thor@jump_host
