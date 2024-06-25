@@ -15,4 +15,5 @@ My attempts at [Kodekloud Engineer](https://engineer.kodekloud.com/signup?referr
 - Linux
   - ☑️ [Level 1](./linux/linux-1.md)
 - Ansible
-  - [Level 1](./ansible/ansible-1.md)
+  - ✅ [Level 1](./ansible/ansible-1.md)
+  - ☑️ [Level 2](./ansible/ansible-2.md)
