@@ -7,35 +7,32 @@
 ```bash
 # thor@jump_host
 vi /home/thor/ansible/inventory
-> stapp02 ansible_host=172.16.238.11 ansible_user=steve ansible_ssh_pass=Am3ric@ ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+> stapp02 ansible_host=172.16.238.11 ansible_user=steve ansible_ssh_pass=Am3ric@
 
 ansible -m ping all -i ansible/inventory
 
 vi /home/thor/ansible/playbook.yml
 > - hosts: stapp02
 >  gather_facts: false
->  become: true 
+>  become: true
 >
 >  tasks:
->    - name: Create empty file 
+>    - name: Create empty file
 >      file:
 >        path: /tmp/file.txt
 >        state: touch
 ```
 
-
-
 ### 2. Create Ansible Inventory for App Server Testing
 
 ```bash
 # thor@jump_host
-vi /home/thor/playbook/inventory
-> stapp02 ansible_host=172.16.238.11 ansible_user=steve ansible_ssh_pass=Am3ric@ ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+cd playbook
+vi inventory
+> stapp02 ansible_host=172.16.238.11 ansible_user=steve ansible_ssh_pass=Am3ric@
 
-ansible -m ping all -i /home/thor/playbook/inventory
+ansible -m ping all -i inventory
 ```
-
-
 
 ### 3. Configure Default SSH User for Ansible
 
@@ -46,26 +43,19 @@ sudo vi /etc/ansible/ansible.cfg
 > remote_user = jim
 ```
 
-
-
 ### 4. Copy Data to App Servers using Ansible
 
 ```bash
 # thor@jump_host
 cd ansible/
 vi inventory
-
-> stapp01 ansible_host=172.16.238.10 ansible_user=tony ansible_ssh_pass=Ir0nM@n ansible_ssh_common_args='-o StrictHostKeyChecking=no'
-> stapp02 ansible_host=172.16.238.11 ansible_user=steve ansible_ssh_pass=Am3ric@ ansible_ssh_common_args='-o StrictHostKeyChecking=no'
-> stapp03 ansible_host=172.16.238.12 ansible_user=banner ansible_ssh_pass=BigGr33n ansible_ssh_common_args='-o StrictHostKeyChecking=no'
-
 ansible -m ping all -i inventory
 
 vi playbook.yml
 ---
 - name: Copy files from jumphost to all servers
   hosts: all
-  become: yes 
+  become: yes
 
   tasks:
   - name: Copy /usr/src/sysops/index.html file to /opt/sysops
@@ -74,7 +64,12 @@ vi playbook.yml
         dest: /opt/security
 ```
 
-
+```bash
+# inventory
+stapp01 ansible_host=172.16.238.10 ansible_ssh_pass=Ir0nM@n ansible_user=tony ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+stapp02 ansible_host=172.16.238.11 ansible_ssh_pass=Am3ric@ ansible_user=steve ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+stapp03 ansible_host=172.16.238.12 ansible_ssh_pass=BigGr33n ansible_user=banner ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+```
 
 ### 5. Create Files on App Servers using Ansible
 
@@ -83,13 +78,7 @@ vi playbook.yml
 cd playbook/
 vi inventory
 
-vi inventory
-
-> stapp01 ansible_host=172.16.238.10 ansible_user=tony ansible_ssh_pass=Ir0nM@n ansible_ssh_common_args='-o StrictHostKeyChecking=no'
-> stapp02 ansible_host=172.16.238.11 ansible_user=steve ansible_ssh_pass=Am3ric@ ansible_ssh_common_args='-o StrictHostKeyChecking=no'
-> stapp03 ansible_host=172.16.238.12 ansible_user=banner ansible_ssh_pass=BigGr33n ansible_ssh_common_args='-o StrictHostKeyChecking=no'
-
-vi playbook.yml 
+vi playbook.yml
 ---
 - name: Create blank file in the App Servers
   hosts: all
@@ -102,11 +91,9 @@ vi playbook.yml
         group: "{{ ansible_user }}"
         mode: "0744"
         state: touch
-        
+
 ansible-playbook  -i inventory playbook.yml
 ```
-
-
 
 ### Test
 
