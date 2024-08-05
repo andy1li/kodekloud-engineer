@@ -307,25 +307,51 @@ kubectl get svc
 # nginx-deployment
 spec:
   replicas: 5
-  strategy:
-    type: Recreate
   template:
     spec:
       containers:
       - image: nginx:latest
-
-# 
+# nginx-service
 spec:
   ports:
   - nodePort: 32165
 ```
 
 
+
 ### 13. Deploy Highly Available Pods with Replication Controller
 
 ```bash
 # thor@jump_host
+vi replica-controller.yml
+kubectl apply -f replica-controller.yml 
+```
 
+```yaml
+# replica-controller.yml
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: httpd-replicationcontroller
+  labels:
+    app: httpd_app
+    type: front-end
+spec:
+  replicas: 3
+  selector:
+    app: httpd_app
+  template:
+    metadata:
+      labels:
+        app: httpd_app
+        type: front-end
+    spec:
+      containers:
+        - name: httpd-container
+          image: 
+            httpd:latest
+          ports:
+            - containerPort: 80 
 ```
 
 
@@ -334,9 +360,37 @@ spec:
 
 ```bash
 # thor@jump_host
+kubectl get pods
+kubectl describe pods nginx-phpfpm
 
+kubectl get pod/nginx-phpfpm -o yaml > pod.yml
+kubectl get cm nginx-config -o yaml > pod-cm.yml
+
+cat pod-cm.yml
+vi pod.yml
+
+kubectl replace -f pod.yml --force
+kubectl cp /home/thor/index.php nginx-phpfpm:/var/www/html -c nginx-container 
 ```
 
+```yaml
+# pod-cm.yml
+apiVersion: v1
+data:
+  nginx.conf: |
+    http {
+      server {
+        # Set nginx to serve files from the shared volume!
+        root /var/www/html;
+        
+# pod.yml
+spec:
+  containers:
+  - image: nginx:latest
+    volumeMounts:
+    - mountPath: /var/www/html/
+      name: shared-files
+```
 
 
 

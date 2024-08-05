@@ -24,11 +24,12 @@ My attempts at [Kodekloud Engineer](https://engineer.kodekloud.com/signup?referr
 
 - Jenkins
 
-  - ✅ [Level 1](./jenkins/jenkins-1.md)
+  - ☑️ [Level 1](./jenkins/jenkins-1.md)
 
 - Kubernetes
 
-  - ☑️ [Level 1](./kubernetes/kubernetes-1.md)
+  - ✅ [Level 1](./kubernetes/kubernetes-1.md)
+  - ☑️ [Level 2](./kubernetes/kubernetes-2.md)
 
 - Linux
   - ☑️ [Level 1](./linux/linux-1.md)
