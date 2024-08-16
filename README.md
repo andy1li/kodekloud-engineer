@@ -28,8 +28,9 @@ My attempts at [Kodekloud Engineer](https://engineer.kodekloud.com/signup?referr
 
 - Kubernetes
 
-  - ✅ [Level 1](./kubernetes/kubernetes-1.md)
-  - ☑️ [Level 2](./kubernetes/kubernetes-2.md)
+  - ☑️ [Level 1](./kubernetes/kubernetes-1.md)
+  - ✅ [Level 2](./kubernetes/kubernetes-2.md)
+  - ☑️ [Level 3](./kubernetes/kubernetes-3.md)
 
 - Linux
   - ☑️ [Level 1](./linux/linux-1.md)
